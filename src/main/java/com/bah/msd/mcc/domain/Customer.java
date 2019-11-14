@@ -13,6 +13,10 @@ public class Customer {
 	}
 	public Customer() {}
 	
+	@Override
+	public String toString() {
+		return "Customer [name=" + name + ", password=" + password + ", email=" + email + "]";
+	}
 	public String getName() {
 		return name;
 	}

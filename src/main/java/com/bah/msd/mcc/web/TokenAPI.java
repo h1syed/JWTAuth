@@ -20,7 +20,7 @@ import com.bah.msd.mcc.service.JWTUtil;
 public class TokenAPI {
 		JWTUtil jwtUtil = new JWTHelper();
 		private final String urlLogin = "http://localhost:8080/api/customers/login";
-		private final String uriRegister = "http://localhost:8080/api/customers";
+		private final String uriRegister = "http://localhost:8080/api/customers/register";
 		private final String API_Scope = "com.bah.msd.mcc.web";
 		
 		@PostMapping("/token")
@@ -34,7 +34,7 @@ public class TokenAPI {
 				HttpEntity<Customer> request = new HttpEntity<Customer>(cust);
 				Boolean custLegit = restTemplate.postForObject(urlLogin,request, Boolean.class);
 				if(custLegit) {
-					Token token = jwtUtil.createToken(username);
+					Token token = jwtUtil.createToken(API_Scope);
 					ResponseEntity<?> response = ResponseEntity.ok(token);
 					return response;			
 				}
